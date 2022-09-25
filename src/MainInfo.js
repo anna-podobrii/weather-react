@@ -120,10 +120,10 @@ export default function MainInfo(props) {
               />
               <span className="today-temperature">
                 <span id="temp">{weather}</span>
-                <a id="c" onClick={showCelsium}>
+                <a id="c" href="" onClick={showCelsium}>
                   °C
                 </a>
-                <a id="f" onClick={showFarenheit}>
+                <a id="f" href="" onClick={showFarenheit}>
                   /°F
                 </a>
               </span>

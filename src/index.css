@@ -94,10 +94,14 @@ li {
 #c {
   font-size: 40px;
   font-weight: 400;
+  color: white;
+  text-decoration: none;
 }
 #f {
   font-size: 20px;
   font-weight: 400;
+  color: white;
+  text-decoration: none;
 }
 .place {
   font-size: 30px;

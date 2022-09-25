@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default function MainInfo(props) {
   let [city, setCity] = useState(props.city);
-
   let [weather, setWeather] = useState(null);
   let [desc, setDesc] = useState(null);
   let [hum, setHum] = useState(null);
@@ -20,7 +19,7 @@ export default function MainInfo(props) {
     event.preventDefault();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3d512dee9da8b831b3d6680a9d730dd9&units=metric`;
     function handleResponse(response) {
-      setWeather(Math.round(response.data.main.temp));
+       setWeather(Math.round(response.data.main.temp));
       setDesc(response.data.weather[0].description);
       setHum(response.data.main.humidity);
       setWind(response.data.wind.speed);
@@ -30,6 +29,7 @@ export default function MainInfo(props) {
       setMin(Math.round(response.data.main.temp_min));
       setMax(Math.round(response.data.main.temp_max));
       setName(city);
+      console.log(response);
     }
 
     axios.get(url).then(handleResponse);
@@ -41,6 +41,46 @@ export default function MainInfo(props) {
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function showFarenheit(event) {
+    event.preventDefault();
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3d512dee9da8b831b3d6680a9d730dd9&units=imperial`;
+    function handleResponse(response) {
+      setWeather(Math.round(response.data.main.temp));
+      setDesc(response.data.weather[0].description);
+      setHum(response.data.main.humidity);
+      setWind(response.data.wind.speed);
+      setImg(response.data.weather[0].icon);
+      setPress(response.data.main.pressure);
+      setLittleDesc(response.data.weather[0].main);
+      setMin(Math.round(response.data.main.temp_min));
+      setMax(Math.round(response.data.main.temp_max));
+      setName(city);
+    }
+    axios.get(url).then(handleResponse);
+    let forecastElement = document.querySelector("#windUnit");
+    forecastElement.innerHTML = `m/h`;
+  }
+
+  function showCelsium(event) {
+    event.preventDefault();
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3d512dee9da8b831b3d6680a9d730dd9&units=metric`;
+    function handleResponse(response) {
+      setWeather(Math.round(response.data.main.temp));
+      setDesc(response.data.weather[0].description);
+      setHum(response.data.main.humidity);
+      setWind(response.data.wind.speed);
+      setImg(response.data.weather[0].icon);
+      setPress(response.data.main.pressure);
+      setLittleDesc(response.data.weather[0].main);
+      setMin(Math.round(response.data.main.temp_min));
+      setMax(Math.round(response.data.main.temp_max));
+      setName(city);
+    }
+    let forecastElement = document.querySelector("#windUnit");
+    forecastElement.innerHTML = `km/h`;
+    axios.get(url).then(handleResponse);
   }
   if (weather) {
     return (
@@ -80,8 +120,12 @@ export default function MainInfo(props) {
               />
               <span className="today-temperature">
                 <span id="temp">{weather}</span>
-                <span id="c">°C</span>
-                <span id="f">/°F</span>
+                <a id="c" href="#" onClick={showCelsium}>
+                  °C
+                </a>
+                <a id="f" href="#" onClick={showFarenheit}>
+                  /°F
+                </a>
               </span>
             </div>
             <div className="col">
@@ -97,7 +141,7 @@ export default function MainInfo(props) {
                 </li>
                 <li>
                   <img src="images/wind.png" alt="" width="20" />
-                  Wind <span id="wind">{wind}</span> km/h
+                  Wind <span id="wind">{wind}</span> <span id="windUnit">km/h</span>
                 </li>
                 <li>
                   <img src="images/presure.png" alt="" width="20" />

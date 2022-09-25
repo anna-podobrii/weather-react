@@ -120,10 +120,10 @@ export default function MainInfo(props) {
               />
               <span className="today-temperature">
                 <span id="temp">{weather}</span>
-                <a id="c" href="" onClick={showCelsium}>
+                <a id="c" href="showCelsium" onClick={showCelsium}>
                   °C
                 </a>
-                <a id="f" href="" onClick={showFarenheit}>
+                <a id="f" href="showCelsium" onClick={showFarenheit}>
                   /°F
                 </a>
               </span>
@@ -141,7 +141,8 @@ export default function MainInfo(props) {
                 </li>
                 <li>
                   <img src="images/wind.png" alt="" width="20" />
-                  Wind <span id="wind">{wind}</span> <span id="windUnit">km/h</span>
+                  Wind <span id="wind">{wind}</span>{" "}
+                  <span id="windUnit">km/h</span>
                 </li>
                 <li>
                   <img src="images/presure.png" alt="" width="20" />

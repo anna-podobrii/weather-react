@@ -6,7 +6,8 @@ export default function AllBlock() {
   return (
     <div>
       <div className="AllBlock">
-        <MainInfo city="" />
+        <MainInfo city="" lat='' long='' />
+        
       </div>
       <div className="sing">
         This project was coded by Hanna Podobrii and is

@@ -14,11 +14,6 @@ export default function MainInfo(props) {
   let [min, setMin] = useState(null);
   let [max, setMax] = useState(null);
   let [name, setName] = useState(null);
-  let [iconDaily, setIconDaily] = useState([]);
-  let [minDaily, setMinDaily] = useState([]);
-  let [maxDaily, setMaxDaily] = useState([]);
-  let [dayDaily, setDayDaily] = useState([]);
-  let [dateDaily, setDateDaily] = useState([]);
   let [array, setArray] = useState(null);
    
 
